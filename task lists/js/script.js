@@ -41,39 +41,45 @@ let tasks = [
 }
 ];
 
+tasks.forEach(obj => Object.freeze(obj));
+
 const createTask = function (newTask) { 
     tasks.push(newTask);
 };
 
 const deleteTask = function (id) {
-    const foundIndex = tasks.findIndex(element => element.id === id);
+    const taskId = tasks.findIndex(element => element.id === id);
 
-    if (foundIndex !== -1) {
-        tasks.splice(foundIndex, 1);
+    if (taskId !== -1) {
+        tasks.splice(taskId, 1);
     }
 };
 
 const updateTask = function (task) {   
-   const findIndex = tasks.findIndex(element => element.id === task.id);
-   
-   if (findIndex !== -1) {
-        tasks[findIndex] = task;
-   }
-};
+    const taskIndex = tasks.findIndex(element => {
+        return element.id === task.id;
+    });
+  
+    let date = new Date();
+    if (taskIndex !== -1) {
+        const newTask = { ...tasks[taskIndex], ...task, dateOfChange: date.toLocaleDateString() };
+        tasks.splice(taskIndex, 1, newTask);
+    }
+  }; 
 
-let tasksContainer = document.querySelector('.tasks');
+const taskContainer = document.querySelector('.tasks');
 
 tasks.forEach(task => {
-    tasksContainer.innerHTML += `
+    taskContainer.innerHTML += `
         <div class="task__number">
             <div class="task__checkbox">
                 <label>
-                    <input data-task-id="${task.id}" class="task__checkbox-input" type="checkbox">
+                    <input data-task-id="${task.id}" class="task__checkbox-input" type="checkbox" value="${task.status}">
                 </label>
             </div>
             <div class="task">
                 <div class="task__name">${task.name}</div>
-                <div class="task__autor">${task.description}, Дата создания: ${task.dateOfCreation}, Дата изменения: ${task.dateOfChange}, Статус: ${task.status}</div>
+                <div class="task__autor">${task.description}, <br>Дата создания: ${task.dateOfCreation}, <br>Дата изменения: ${task.dateOfChange}</div>
             </div>
             <div class="icons">
                         <i class="fa-sharp fa-solid fa-check check__mark"></i>
@@ -84,13 +90,67 @@ tasks.forEach(task => {
     `;
 });
 
-const checkboxInputs = document.querySelectorAll('.task__checkbox-input');
+function rerender (task) {
+    taskContainer.innerHTML = "";
+        tasks.forEach(task => {
+            taskContainer.innerHTML += `
+                <div class="task__number">
+                    <div class="task__checkbox">
+                        <label>
+                            <input data-task-id="${task.id}" class="task__checkbox-input" type="checkbox" value="${task.status}">
+                        </label>
+                    </div>
+                    <div class="task">
+                        <div class="task__name">${task.name}</div>
+                        <div class="task__autor">${task.description}, <br>Дата создания: ${task.dateOfCreation}, <br>Дата изменения: ${task.dateOfChange}</div>
+                    </div>
+                    <div class="icons">
+                        <i class="fa-sharp fa-solid fa-check check__mark"></i>
+                        <i class="fa-sharp fa-solid fa-trash-can trash__can"></i>
+                    </div>
+                </div>
+            `;
+        });
+};
 
-checkboxInputs.forEach(input => {
-  input.addEventListener('change', event => {
-    const taskId = parseInt(event.target.dataset.taskId);
-    const taskIndex = tasks.findIndex(task => task.id === taskId);
-    tasks[taskIndex].status = event.target.checked;
-    console.log(tasks);
-  });
+const popup = document.querySelector('.popup');
+const buttonShow = document.querySelector('.button-show');
+const buttonClose = document.querySelector('.button-close');
+
+buttonShow.addEventListener ('click', function () {
+    popup.classList.add('popup__open');
+});
+
+buttonClose.addEventListener ('click', function () {
+    popup.classList.remove('popup__open');
+});
+
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') { 
+    popup.classList.remove('popup__open');
+    }
+});
+
+const newForm = document.querySelector('.add-form');
+
+newForm.addEventListener('submit', function (event) {
+    event.preventDefault();
+    let date = new Date();
+    const nameValue = document.querySelector('#add-form-name').value;
+    const descriptionValue = document.querySelector('#add-form-description').value;
+    createTask({name: nameValue, description: descriptionValue, dateOfCreation: date.toLocaleDateString(), dateOfChange: date.toLocaleDateString()});
+    rerender();
+    document.querySelector('#add-form-name').value = '';
+    document.querySelector('#add-form-description').value = '';
+    popup.classList.remove('popup__open');
+});
+
+const checkboxes = document.querySelectorAll('.task__checkbox-input');
+
+checkboxes.forEach(checkbox => {
+    const {taskId} = checkbox.dataset;
+    checkbox.addEventListener('change', (event) => {
+        const isChecked = event.target.checked;
+        updateTask({id: Number(taskId), status: isChecked});
+   });
 });
