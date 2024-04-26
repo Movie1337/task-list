@@ -1,0 +1,184 @@
+body {
+  background-color: blueviolet;
+  font-family: "Roboto";
+}
+body .task__list {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 400px;
+  background-color: aliceblue;
+  border-radius: 3px;
+}
+
+body h1 {
+  font-size: 18px;
+}
+body .title__list {
+  padding: 5px 15px 5px 15px;
+}
+body .tasks {
+  overflow: auto;
+  height: 275px;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+}
+body .task__number {
+  display: flex;
+  padding: 15px;
+  border-bottom: 1px solid grey;
+}
+body .task__checkbox {
+  display: flex;
+  align-items: center;
+  height: 35px;
+  padding-left: 5px;
+  border-left: 4px solid yellow;
+}
+body .task {
+  flex-basis: 200px;
+  padding-left: 20px;
+}
+body .task__name {
+  font-size: 15px;
+}
+body .task__autor {
+  color: grey;
+  font-size: 10px;
+}
+body .icons {
+  display: flex;
+  justify-content: flex-end;
+  flex-basis: 400px;
+}
+body .check__mark {
+  color: green;
+  padding-right: 20px;
+}
+body .trash__can {
+  color: red;
+  padding-right: 10px;
+}
+body .buttons {
+  display: flex;
+  justify-content: end;
+  padding-right: 20px;
+  padding-top: 15px;
+}
+body .button__cancel {
+  color: blue;
+  border: 3px;
+  padding: 10px;
+  border-radius: 3px;
+  transition: all 500ms ease;
+  cursor: pointer;
+}
+body .button__add {
+  color: white;
+  background-color: blue;
+  border: 3px;
+  padding: 10px;
+  border-radius: 3px;
+  transition: all 500ms ease;
+  cursor: pointer;
+}
+body .button__add:hover {
+  background: white;
+  color: blue;
+  box-shadow: inset 0 0 0 3px blue;
+}
+body .button__cancel:hover {
+  background: blue;
+  color: white;
+  box-shadow: inset 0 0 0 3px blue;
+}
+
+body .popup {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 200px;
+  background-color: gainsboro;
+  border-radius: 3px;
+}
+
+body .popup__content {
+  position: relative;
+  margin-top: auto;
+  margin-left: 20px;
+}
+
+body h3 {
+  font-size: 18px;
+}
+
+body .button {
+  padding-top: 40px;
+  text-align: center;
+}
+
+body .add-form-button {
+  color: white;
+  background-color: green;
+  border: 0px;
+  padding: 10px;
+  border-radius: 3px;
+  transition: all 500ms ease;
+  cursor: pointer;
+}
+
+body .add-form-button:hover {
+  background: white;
+  color: green;
+  box-shadow: inset 0 0 0 3px green;
+}
+
+body .popup__open {
+  display: block;
+}
+
+body .button-close {
+  position: absolute;
+  top: -20px;
+  right: 30px;
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+}
+
+body .button-close::before,
+body .button-close::after {
+  content: "";
+    position: absolute;
+    top: 21px;
+    left: 10px;
+    width: 26px;
+    height: 4px;
+    background: #e62f57;
+}
+
+body .button-close::before {
+  webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+body .button-close::after {
+  webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+@media screen and (max-width: 400px) {
+  .buttons {
+    justify-content: center;
+  }
+  .task__lists {
+    width: 400px;
+  }
+}
