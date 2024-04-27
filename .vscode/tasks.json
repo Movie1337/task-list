@@ -1,0 +1,13 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the list__tasks.json format
+  "version": "2.0.0",
+  "list__tasks": [
+    {
+      "label": "Compile Saas to CSS",
+      "type": "shell",
+      "command": "saas style.scss style.css",
+      "group": "build"
+    }
+  ]
+}

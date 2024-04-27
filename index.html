@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="scss/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,19 +25,19 @@
   </head>
 
   <body>
-    <section class="task__list">
-      <form class="task__list-form" method="post">
-        <h1 class="title__list">
-          <i class="fa-sharp fa-solid fa-list-check"></i>Task List
+    <section class="list">
+      <form class="list__form" method="post">
+        <h1 class="list__title">
+          <i class="fa-sharp fa-solid fa-list-check"></i> Task List
         </h1>
         <div class="tasks"></div>
-        <div class="buttons">
+        <div class="list__buttons">
           <label for="">
-            <input class="button__cancel" type="button" value="Cancel" />
+            <input class="list__buttons-cancel" type="button" value="Cancel" />
           </label>
           <label for="">
             <input
-              class="button__add button-show"
+              class="list__buttons-add button-show"
               type="button"
               value="Add Task"
             />
@@ -46,14 +46,14 @@
       </form>
     </section>
     <section class="popup">
-      <form class="add-form" method="post">
+      <form class="popup__add-form" method="post">
         <div class="popup__content">
           <h3 class="">Добавление новой задачи</h3>
           <div>
             <label for="">
               <span>Название</span>
               <input
-                id="add-form-name"
+                id="popup__add-form-name"
                 type="text"
                 placeholder="Call Sam For payments"
                 required
@@ -64,7 +64,7 @@
             <label for="">
               <span>Описание</span>
               <input
-                id="add-form-description"
+                id="popup__add-form-description"
                 type="text"
                 placeholder="Позвоните Сэму для оплаты"
                 required
@@ -73,7 +73,7 @@
           </div>
           <div class="button">
             <input
-              class="add-form-button"
+              class="popup__add-form-button"
               type="submit"
               value="Добавить задачу"
             />

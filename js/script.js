@@ -85,10 +85,9 @@ tasks.forEach((task) => {
                 <div class="task__name">${task.name}</div>
                 <div class="task__autor">${task.description}, <br>Дата создания: ${task.dateOfCreation}, <br>Дата изменения: ${task.dateOfChange}</div>
             </div>
-            <div class="icons">
-                        <i class="fa-sharp fa-solid fa-check check__mark"></i>
-                        <i class="fa-sharp fa-solid fa-trash-can trash__can"></i>
-                    </div>
+            <div class="task__icons">
+                  <div class="task__icons-button"><i class="fa-sharp fa-solid fa-check check__mark"></i></div>
+                  <div class="task__icons-button"><i class="fa-sharp fa-solid fa-trash-can trash__can"></i></div>
             </div>
         </div>
     `;
@@ -108,9 +107,9 @@ function rerender(task) {
                         <div class="task__name">${task.name}</div>
                         <div class="task__autor">${task.description}, <br>Дата создания: ${task.dateOfCreation}, <br>Дата изменения: ${task.dateOfChange}</div>
                     </div>
-                    <div class="icons">
-                        <i class="fa-sharp fa-solid fa-check check__mark"></i>
-                        <i class="fa-sharp fa-solid fa-trash-can trash__can"></i>
+                    <div class="task__icons">
+                      <div class="task__icons-button"><i class="fa-sharp fa-solid fa-check check__mark"></i></div>
+                      <div class="task__icons-button"><i class="fa-sharp fa-solid fa-trash-can trash__can"></i></div>
                     </div>
                 </div>
             `;
@@ -135,14 +134,14 @@ document.addEventListener("keydown", function (event) {
   }
 });
 
-const newForm = document.querySelector(".add-form");
+const newForm = document.querySelector(".popup__add-form");
 
 newForm.addEventListener("submit", function (event) {
   event.preventDefault();
   let date = new Date();
-  const nameValue = document.querySelector("#add-form-name").value;
+  const nameValue = document.querySelector("#popup__add-form-name").value;
   const descriptionValue = document.querySelector(
-    "#add-form-description"
+    "#popup__add-form-description"
   ).value;
   createTask({
     name: nameValue,
@@ -151,8 +150,8 @@ newForm.addEventListener("submit", function (event) {
     dateOfChange: date.toLocaleDateString(),
   });
   rerender();
-  document.querySelector("#add-form-name").value = "";
-  document.querySelector("#add-form-description").value = "";
+  document.querySelector("#popup__add-form-name").value = "";
+  document.querySelector("#popup__add-form-description").value = "";
   popup.classList.remove("popup__open");
 });
 

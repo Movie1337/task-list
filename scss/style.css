@@ -2,7 +2,7 @@ body {
   background-color: blueviolet;
   font-family: "Roboto";
 }
-body .task__list {
+body .list {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -13,18 +13,51 @@ body .task__list {
   background-color: aliceblue;
   border-radius: 3px;
 }
-
-body h1 {
-  font-size: 18px;
+body .list__title {
+  padding-left: 20px;
 }
-body .title__list {
-  padding: 5px 15px 5px 15px;
+body .list__buttons {
+  display: flex;
+  justify-content: end;
+  padding-top: 10px;
+  padding-right: 20px;
+}
+body .list__buttons-cancel {
+  color: white;
+  background-color: rgb(188, 195, 235);
+  border: 0px;
+  padding: 10px;
+  border-radius: 3px;
+  transition: all 500ms ease;
+  margin-right: 5px;
+}
+body .list__buttons-cancel:hover {
+  background: blue;
+  color: white;
+  box-shadow: inset 0 0 0 3px blue;
+}
+body .list__buttons-add {
+  color: white;
+  background-color: blue;
+  border: 0px;
+  padding: 10px;
+  border-radius: 3px;
+  transition: all 500ms ease;
+}
+body .list__buttons-add:hover {
+  background: white;
+  color: blue;
+  box-shadow: inset 0 0 0 3px blue;
 }
 body .tasks {
   overflow: auto;
   height: 275px;
   border-top: 1px solid grey;
   border-bottom: 1px solid grey;
+}
+body .task {
+  flex-basis: 200px;
+  padding-left: 20px;
 }
 body .task__number {
   display: flex;
@@ -36,11 +69,8 @@ body .task__checkbox {
   align-items: center;
   height: 35px;
   padding-left: 5px;
-  border-left: 4px solid yellow;
-}
-body .task {
-  flex-basis: 200px;
-  padding-left: 20px;
+  border-left: 3px solid yellow;
+  border-radius: 10%;
 }
 body .task__name {
   font-size: 15px;
@@ -49,53 +79,32 @@ body .task__autor {
   color: grey;
   font-size: 10px;
 }
-body .icons {
+body .task__icons {
   display: flex;
   justify-content: flex-end;
   flex-basis: 400px;
 }
+body .task__icons-button {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20%;
+  transition: all 500ms ease;
+}
+body .task__icons-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
 body .check__mark {
   color: green;
-  padding-right: 20px;
+  padding: 5px;
 }
 body .trash__can {
   color: red;
-  padding-right: 10px;
+  padding: 5px;
 }
-body .buttons {
-  display: flex;
-  justify-content: end;
-  padding-right: 20px;
-  padding-top: 15px;
-}
-body .button__cancel {
-  color: blue;
-  border: 3px;
-  padding: 10px;
-  border-radius: 3px;
-  transition: all 500ms ease;
-  cursor: pointer;
-}
-body .button__add {
-  color: white;
-  background-color: blue;
-  border: 3px;
-  padding: 10px;
-  border-radius: 3px;
-  transition: all 500ms ease;
-  cursor: pointer;
-}
-body .button__add:hover {
-  background: white;
-  color: blue;
-  box-shadow: inset 0 0 0 3px blue;
-}
-body .button__cancel:hover {
-  background: blue;
-  color: white;
-  box-shadow: inset 0 0 0 3px blue;
-}
-
 body .popup {
   display: none;
   position: absolute;
@@ -108,23 +117,12 @@ body .popup {
   background-color: gainsboro;
   border-radius: 3px;
 }
-
 body .popup__content {
   position: relative;
   margin-top: auto;
   margin-left: 20px;
 }
-
-body h3 {
-  font-size: 18px;
-}
-
-body .button {
-  padding-top: 40px;
-  text-align: center;
-}
-
-body .add-form-button {
+body .popup__add-form-button {
   color: white;
   background-color: green;
   border: 0px;
@@ -133,18 +131,22 @@ body .add-form-button {
   transition: all 500ms ease;
   cursor: pointer;
 }
-
-body .add-form-button:hover {
+body .popup__add-form-button:hover {
   background: white;
   color: green;
   box-shadow: inset 0 0 0 3px green;
 }
-
 body .popup__open {
   display: block;
 }
-
-body .button-close {
+body .popup h3 {
+  font-size: 18px;
+}
+body .popup .button {
+  padding-top: 40px;
+  text-align: center;
+}
+body .popup .button-close {
   position: absolute;
   top: -20px;
   right: 30px;
@@ -152,9 +154,8 @@ body .button-close {
   height: 15px;
   cursor: pointer;
 }
-
-body .button-close::before,
-body .button-close::after {
+body .popup .button-close::before,
+body .popup .button-close::after {
   content: "";
   position: absolute;
   top: 21px;
@@ -163,22 +164,20 @@ body .button-close::after {
   height: 4px;
   background: #e62f57;
 }
-
-body .button-close::before {
+body .popup .button-close::before {
   webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
-
-body .button-close::after {
+body .popup .button-close::after {
   webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
 
 @media screen and (max-width: 400px) {
-  .buttons {
+  .list__buttons {
     justify-content: center;
   }
-  .task__lists {
+  .lists {
     width: 400px;
   }
-}
+} /*# sourceMappingURL=style.css.map */
