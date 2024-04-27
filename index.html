@@ -1,63 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:ital,wght@1,300&display=swap"
-        rel="stylesheet">
-    <script src="https://kit.fontawesome.com/a3da699fde.js" crossorigin="anonymous"></script>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Montserrat:ital,wght@1,300&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://kit.fontawesome.com/a3da699fde.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Task List</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <section class="task__list">
-        <form class="task__list-form" method="post">
-            <h1 class="title__list">
-                <i class="fa-sharp fa-solid fa-list-check"></i>Task List
-            </h1>
-            <div class="tasks"></div>
-            <div class="buttons">
-                <label for="">
-                    <input class="button__cancel" type="button" value="Cancel">
-                </label>
-                <label for="">
-                    <input class="button__add button-show" type="button" value="Add Task">
-                </label>
-            </div>
-        </form>
+      <form class="task__list-form" method="post">
+        <h1 class="title__list">
+          <i class="fa-sharp fa-solid fa-list-check"></i>Task List
+        </h1>
+        <div class="tasks"></div>
+        <div class="buttons">
+          <label for="">
+            <input class="button__cancel" type="button" value="Cancel" />
+          </label>
+          <label for="">
+            <input
+              class="button__add button-show"
+              type="button"
+              value="Add Task"
+            />
+          </label>
+        </div>
+      </form>
     </section>
     <section class="popup">
-        <form class="add-form" method="post">
-            <div class="popup__content">
-                <h3 class="">Добавление новой задачи</h3>
-                <div>
-                    <label for="">
-                        <span>Название</span>
-                        <input id="add-form-name" type="text" placeholder="Call Sam For payments" required>
-                    </label>
-                </div>
-                <div>
-                    <label for="">
-                        <span>Описание</span>
-                        <input id="add-form-description" type="text" placeholder="Позвоните Сэму для оплаты" required>
-                    </label>
-                </div>
-                <div class="button">
-                    <input class="add-form-button" type="submit" value="Добавить задачу">
-                </div>
-                <div class="button-close"></div>
-            </div>
-        </form>
+      <form class="add-form" method="post">
+        <div class="popup__content">
+          <h3 class="">Добавление новой задачи</h3>
+          <div>
+            <label for="">
+              <span>Название</span>
+              <input
+                id="add-form-name"
+                type="text"
+                placeholder="Call Sam For payments"
+                required
+              />
+            </label>
+          </div>
+          <div>
+            <label for="">
+              <span>Описание</span>
+              <input
+                id="add-form-description"
+                type="text"
+                placeholder="Позвоните Сэму для оплаты"
+                required
+              />
+            </label>
+          </div>
+          <div class="button">
+            <input
+              class="add-form-button"
+              type="submit"
+              value="Добавить задачу"
+            />
+          </div>
+          <div class="button-close"></div>
+        </div>
+      </form>
     </section>
     <script src="js/script.js"></script>
-</body>
-
+  </body>
 </html>

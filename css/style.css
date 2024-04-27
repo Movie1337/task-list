@@ -156,22 +156,22 @@ body .button-close {
 body .button-close::before,
 body .button-close::after {
   content: "";
-    position: absolute;
-    top: 21px;
-    left: 10px;
-    width: 26px;
-    height: 4px;
-    background: #e62f57;
+  position: absolute;
+  top: 21px;
+  left: 10px;
+  width: 26px;
+  height: 4px;
+  background: #e62f57;
 }
 
 body .button-close::before {
   webkit-transform: rotate(45deg);
-    transform: rotate(45deg);
+  transform: rotate(45deg);
 }
 
 body .button-close::after {
   webkit-transform: rotate(-45deg);
-    transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 @media screen and (max-width: 400px) {
