@@ -154,8 +154,7 @@ body .popup .button-close {
   height: 15px;
   cursor: pointer;
 }
-body .popup .button-close::before,
-body .popup .button-close::after {
+body .popup .button-close::before, body .popup .button-close::after {
   content: "";
   position: absolute;
   top: 21px;
@@ -165,11 +164,9 @@ body .popup .button-close::after {
   background: #e62f57;
 }
 body .popup .button-close::before {
-  webkit-transform: rotate(45deg);
   transform: rotate(45deg);
 }
 body .popup .button-close::after {
-  webkit-transform: rotate(-45deg);
   transform: rotate(-45deg);
 }
 
@@ -180,4 +177,4 @@ body .popup .button-close::after {
   .lists {
     width: 400px;
   }
-} /*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */
