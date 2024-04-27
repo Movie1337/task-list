@@ -1,76 +1,80 @@
 let tasks = [
-{
+  {
     id: 34765,
-    name: 'Call Sam For payments',
-    description: 'Позвоните Сэму для оплаты',
-    dateOfCreation: '11.04.2023',
-    dateOfChange: '11.04.2023',
+    name: "Call Sam For payments",
+    description: "Позвоните Сэму для оплаты",
+    dateOfCreation: "11.04.2023",
+    dateOfChange: "11.04.2023",
     status: false,
-},
-{
+  },
+  {
     id: 12678,
-    name: 'Make payment to Bluedart',
-    description: 'Оплатить Bluedart',
-    dateOfCreation: '11.04.2023',
-    dateOfChange: '11.04.2023',
+    name: "Make payment to Bluedart",
+    description: "Оплатить Bluedart",
+    dateOfCreation: "11.04.2023",
+    dateOfChange: "11.04.2023",
     status: false,
-},
-{
+  },
+  {
     id: 45096,
-    name: 'Office rent',
-    description: 'Аренда офиса',
-    dateOfCreation: '11.04.2023',
-    dateOfChange: '11.04.2023',
+    name: "Office rent",
+    description: "Аренда офиса",
+    dateOfCreation: "11.04.2023",
+    dateOfChange: "11.04.2023",
     status: false,
-},
-{
+  },
+  {
     id: 43098,
-    name: 'Office grocery shopping',
-    description: 'Покупка продуктов в офисе',
-    dateOfCreation: '11.04.2023',
-    dateOfChange: '11.04.2023',
+    name: "Office grocery shopping",
+    description: "Покупка продуктов в офисе",
+    dateOfCreation: "11.04.2023",
+    dateOfChange: "11.04.2023",
     status: false,
-},
-{
+  },
+  {
     id: 23047,
-    name: 'Ask for Lunch to Clients',
-    description: 'Попросите обед у клиентов',
-    dateOfCreation: '11.04.2023',
-    dateOfChange: '11.04.2023',
+    name: "Ask for Lunch to Clients",
+    description: "Попросите обед у клиентов",
+    dateOfCreation: "11.04.2023",
+    dateOfChange: "11.04.2023",
     status: false,
-}
+  },
 ];
 
-tasks.forEach(obj => Object.freeze(obj));
+tasks.forEach((obj) => Object.freeze(obj));
 
-const createTask = function (newTask) { 
-    tasks.push(newTask);
+const createTask = function (newTask) {
+  tasks.push(newTask);
 };
 
 const deleteTask = function (id) {
-    const taskId = tasks.findIndex(element => element.id === id);
+  const taskId = tasks.findIndex((element) => element.id === id);
 
-    if (taskId !== -1) {
-        tasks.splice(taskId, 1);
-    }
+  if (taskId !== -1) {
+    tasks.splice(taskId, 1);
+  }
 };
 
-const updateTask = function (task) {   
-    const taskIndex = tasks.findIndex(element => {
-        return element.id === task.id;
-    });
-  
-    let date = new Date();
-    if (taskIndex !== -1) {
-        const newTask = { ...tasks[taskIndex], ...task, dateOfChange: date.toLocaleDateString() };
-        tasks.splice(taskIndex, 1, newTask);
-    }
-  }; 
+const updateTask = function (task) {
+  const taskIndex = tasks.findIndex((element) => {
+    return element.id === task.id;
+  });
 
-const taskContainer = document.querySelector('.tasks');
+  let date = new Date();
+  if (taskIndex !== -1) {
+    const newTask = {
+      ...tasks[taskIndex],
+      ...task,
+      dateOfChange: date.toLocaleDateString(),
+    };
+    tasks.splice(taskIndex, 1, newTask);
+  }
+};
 
-tasks.forEach(task => {
-    taskContainer.innerHTML += `
+const taskContainer = document.querySelector(".tasks");
+
+tasks.forEach((task) => {
+  taskContainer.innerHTML += `
         <div class="task__number">
             <div class="task__checkbox">
                 <label>
@@ -90,10 +94,10 @@ tasks.forEach(task => {
     `;
 });
 
-function rerender (task) {
-    taskContainer.innerHTML = "";
-        tasks.forEach(task => {
-            taskContainer.innerHTML += `
+function rerender(task) {
+  taskContainer.innerHTML = "";
+  tasks.forEach((task) => {
+    taskContainer.innerHTML += `
                 <div class="task__number">
                     <div class="task__checkbox">
                         <label>
@@ -110,47 +114,54 @@ function rerender (task) {
                     </div>
                 </div>
             `;
-        });
-};
+  });
+}
 
-const popup = document.querySelector('.popup');
-const buttonShow = document.querySelector('.button-show');
-const buttonClose = document.querySelector('.button-close');
+const popup = document.querySelector(".popup");
+const buttonShow = document.querySelector(".button-show");
+const buttonClose = document.querySelector(".button-close");
 
-buttonShow.addEventListener ('click', function () {
-    popup.classList.add('popup__open');
+buttonShow.addEventListener("click", function () {
+  popup.classList.add("popup__open");
 });
 
-buttonClose.addEventListener ('click', function () {
-    popup.classList.remove('popup__open');
+buttonClose.addEventListener("click", function () {
+  popup.classList.remove("popup__open");
 });
 
-document.addEventListener('keydown', function (event) {
-    if (event.key === 'Escape') { 
-    popup.classList.remove('popup__open');
-    }
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    popup.classList.remove("popup__open");
+  }
 });
 
-const newForm = document.querySelector('.add-form');
+const newForm = document.querySelector(".add-form");
 
-newForm.addEventListener('submit', function (event) {
-    event.preventDefault();
-    let date = new Date();
-    const nameValue = document.querySelector('#add-form-name').value;
-    const descriptionValue = document.querySelector('#add-form-description').value;
-    createTask({name: nameValue, description: descriptionValue, dateOfCreation: date.toLocaleDateString(), dateOfChange: date.toLocaleDateString()});
-    rerender();
-    document.querySelector('#add-form-name').value = '';
-    document.querySelector('#add-form-description').value = '';
-    popup.classList.remove('popup__open');
+newForm.addEventListener("submit", function (event) {
+  event.preventDefault();
+  let date = new Date();
+  const nameValue = document.querySelector("#add-form-name").value;
+  const descriptionValue = document.querySelector(
+    "#add-form-description"
+  ).value;
+  createTask({
+    name: nameValue,
+    description: descriptionValue,
+    dateOfCreation: date.toLocaleDateString(),
+    dateOfChange: date.toLocaleDateString(),
+  });
+  rerender();
+  document.querySelector("#add-form-name").value = "";
+  document.querySelector("#add-form-description").value = "";
+  popup.classList.remove("popup__open");
 });
 
-const checkboxes = document.querySelectorAll('.task__checkbox-input');
+const checkboxes = document.querySelectorAll(".task__checkbox-input");
 
-checkboxes.forEach(checkbox => {
-    const {taskId} = checkbox.dataset;
-    checkbox.addEventListener('change', (event) => {
-        const isChecked = event.target.checked;
-        updateTask({id: Number(taskId), status: isChecked});
-   });
+checkboxes.forEach((checkbox) => {
+  const { taskId } = checkbox.dataset;
+  checkbox.addEventListener("change", (event) => {
+    const isChecked = event.target.checked;
+    updateTask({ id: Number(taskId), status: isChecked });
+  });
 });
