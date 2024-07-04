@@ -1,5 +1,5 @@
 body {
-  background-color: blueviolet;
+  background-color: rgb(27, 151, 104);
   font-family: "Roboto";
 }
 body .list {
@@ -11,7 +11,8 @@ body .list {
   width: 700px;
   height: 400px;
   background-color: aliceblue;
-  border-radius: 3px;
+  border: 3px solid rgb(115, 255, 0);
+  border-radius: 10px;
 }
 body .list__title {
   padding-left: 20px;
@@ -22,32 +23,19 @@ body .list__buttons {
   padding-top: 10px;
   padding-right: 20px;
 }
-body .list__buttons-cancel {
-  color: white;
-  background-color: rgb(188, 195, 235);
-  border: 0px;
-  padding: 10px;
-  border-radius: 3px;
-  transition: all 500ms ease;
-  margin-right: 5px;
-}
-body .list__buttons-cancel:hover {
-  background: blue;
-  color: white;
-  box-shadow: inset 0 0 0 3px blue;
-}
 body .list__buttons-add {
   color: white;
-  background-color: blue;
+  background-color: rgb(115, 255, 0);
   border: 0px;
   padding: 10px;
   border-radius: 3px;
   transition: all 500ms ease;
+  cursor: pointer;
 }
 body .list__buttons-add:hover {
   background: white;
-  color: blue;
-  box-shadow: inset 0 0 0 3px blue;
+  color: rgb(115, 255, 0);
+  box-shadow: inset 0 0 0 3px rgb(115, 255, 0);
 }
 body .tasks {
   overflow: auto;
@@ -69,7 +57,7 @@ body .task__checkbox {
   align-items: center;
   height: 35px;
   padding-left: 5px;
-  border-left: 3px solid yellow;
+  border-left: 3px solid rgb(31, 228, 136);
   border-radius: 10%;
 }
 body .task__name {
@@ -98,12 +86,14 @@ body .task__icons-button:hover {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 body .check__mark {
-  color: green;
+  color: rgb(115, 255, 0);
   padding: 5px;
+  cursor: pointer;
 }
 body .trash__can {
   color: red;
   padding: 5px;
+  cursor: pointer;
 }
 body .popup {
   display: none;
@@ -114,8 +104,9 @@ body .popup {
   transform: translate(-50%, -50%);
   width: 400px;
   height: 200px;
-  background-color: gainsboro;
-  border-radius: 3px;
+  background-color: aliceblue;
+  border: 3px solid rgb(115, 255, 0);
+  border-radius: 10px;
 }
 body .popup__content {
   position: relative;
@@ -124,7 +115,7 @@ body .popup__content {
 }
 body .popup__add-form-button {
   color: white;
-  background-color: green;
+  background-color: rgb(115, 255, 0);
   border: 0px;
   padding: 10px;
   border-radius: 3px;
@@ -133,8 +124,8 @@ body .popup__add-form-button {
 }
 body .popup__add-form-button:hover {
   background: white;
-  color: green;
-  box-shadow: inset 0 0 0 3px green;
+  color: rgb(115, 255, 0);
+  box-shadow: inset 0 0 0 3px rgb(115, 255, 0);
 }
 body .popup__open {
   display: block;
@@ -161,7 +152,7 @@ body .popup .button-close::before, body .popup .button-close::after {
   left: 10px;
   width: 26px;
   height: 4px;
-  background: #e62f57;
+  background: #ff0037;
 }
 body .popup .button-close::before {
   transform: rotate(45deg);

@@ -2,52 +2,26 @@ let tasks = [
   {
     id: 34765,
     name: "Call Sam For payments",
-    description: "Позвоните Сэму для оплаты",
-    dateOfCreation: "11.04.2023",
-    dateOfChange: "11.04.2023",
-    status: false,
-  },
-  {
-    id: 12678,
-    name: "Make payment to Bluedart",
-    description: "Оплатить Bluedart",
-    dateOfCreation: "11.04.2023",
-    dateOfChange: "11.04.2023",
-    status: false,
-  },
-  {
-    id: 45096,
-    name: "Office rent",
-    description: "Аренда офиса",
-    dateOfCreation: "11.04.2023",
-    dateOfChange: "11.04.2023",
-    status: false,
-  },
-  {
-    id: 43098,
-    name: "Office grocery shopping",
-    description: "Покупка продуктов в офисе",
-    dateOfCreation: "11.04.2023",
-    dateOfChange: "11.04.2023",
-    status: false,
-  },
-  {
-    id: 23047,
-    name: "Ask for Lunch to Clients",
-    description: "Попросите обед у клиентов",
+    description: "По оплате",
     dateOfCreation: "11.04.2023",
     dateOfChange: "11.04.2023",
     status: false,
   },
 ];
 
+// Замораживаем объекты, чтобы избежать случайного изменения
 tasks.forEach((obj) => Object.freeze(obj));
 
-const createTask = function (newTask) {
-  tasks.push(newTask);
+// Функция для создания новой задачи
+const createTask = (newTask) => {
+  if (newTask.id !== 34765) {
+    // Проверяем ID
+    tasks.push(newTask);
+  }
 };
 
-const deleteTask = function (id) {
+// Функция для удаления задачи
+const deleteTask = (id) => {
   const taskId = tasks.findIndex((element) => element.id === id);
 
   if (taskId !== -1) {
@@ -55,13 +29,12 @@ const deleteTask = function (id) {
   }
 };
 
-const updateTask = function (task) {
-  const taskIndex = tasks.findIndex((element) => {
-    return element.id === task.id;
-  });
+// Функция для обновления задачи
+const updateTask = (task) => {
+  const taskIndex = tasks.findIndex((element) => element.id === task.id);
 
-  let date = new Date();
   if (taskIndex !== -1) {
+    let date = new Date(); // Обновляем дату изменения
     const newTask = {
       ...tasks[taskIndex],
       ...task,
@@ -71,96 +44,144 @@ const updateTask = function (task) {
   }
 };
 
-const taskContainer = document.querySelector(".tasks");
+let selectedTaskIds = []; // Список ID выбранных задач
 
-tasks.forEach((task) => {
-  taskContainer.innerHTML += `
-        <div class="task__number">
-            <div class="task__checkbox">
-                <label>
-                    <input data-task-id="${task.id}" class="task__checkbox-input" type="checkbox" value="${task.status}">
-                </label>
-            </div>
-            <div class="task">
-                <div class="task__name">${task.name}</div>
-                <div class="task__autor">${task.description}, <br>Дата создания: ${task.dateOfCreation}, <br>Дата изменения: ${task.dateOfChange}</div>
-            </div>
-            <div class="task__icons">
-                  <div class="task__icons-button"><i class="fa-sharp fa-solid fa-check check__mark"></i></div>
-                  <div class="task__icons-button"><i class="fa-sharp fa-solid fa-trash-can trash__can"></i></div>
-            </div>
+// Функция для получения ID задачи из элемента
+const getTaskIdFromElement = (element) => {
+  return Number(
+    element.closest(".task__number").querySelector(".task__checkbox-input")
+      .dataset.taskId
+  );
+};
+
+// Функция для удаления задачи из списка
+const deleteTaskFromList = (element) => {
+  if (selectedTaskIds.length > 0) {
+    selectedTaskIds.forEach((taskId) => {
+      deleteTask(taskId);
+    });
+    selectedTaskIds = []; // Очищаем список выбранных задач
+  } else {
+    const taskId = getTaskIdFromElement(element);
+    deleteTask(taskId);
+  }
+  renderTasks();
+};
+
+// Функция для отрисовки списка задач
+const renderTasks = () => {
+  const taskContainer = document.querySelector(".tasks");
+  taskContainer.innerHTML = ""; // Очищаем контейнер
+
+  tasks.forEach((task) => {
+    const taskElement = createTaskElement(task);
+    taskContainer.appendChild(taskElement);
+  });
+};
+
+// Функция для создания HTML элемента задачи
+const createTaskElement = (task) => {
+  const taskElement = document.createElement("div");
+  taskElement.classList.add("task__number");
+  taskElement.innerHTML = `
+        <div class="task__checkbox">
+            <label>
+                <input data-task-id="${
+                  task.id
+                }" class="task__checkbox-input" type="checkbox" value="${
+    task.status
+  }" ${task.status ? "checked" : ""}>
+            </label>
+        </div>
+        <div class="task">
+            <div class="task__name">${task.name}</div>
+            <div class="task__autor">${task.description}, <br>Дата создания: ${
+    task.dateOfCreation
+  }, <br>Дата изменения: ${task.dateOfChange}</div>
+        </div>
+        <div class="task__icons">
+            <div class="task__icons-button"><i class="fa-sharp fa-solid fa-check check__mark"></i></div>
+            <div class="task__icons-button"><i class="fa-sharp fa-solid fa-trash-can trash__can"></i></div>
         </div>
     `;
+
+  return taskElement;
+};
+
+// Обработчик событий для taskContainer
+const taskContainer = document.querySelector(".tasks");
+taskContainer.addEventListener("click", (event) => {
+  if (event.target.classList.contains("check__mark")) {
+    // Изменение статуса задачи
+    const taskId = getTaskIdFromElement(event.target);
+    const checkbox = event.target
+      .closest(".task__number")
+      .querySelector(".task__checkbox-input");
+    checkbox.checked = !checkbox.checked; // Переключаем состояние чекбокса
+    updateTask({ id: taskId, status: checkbox.checked }); // Обновляем статус
+    renderTasks(); // Перерисовываем список
+
+    if (checkbox.checked) {
+      selectedTaskIds.push(taskId); // Добавляем ID в список выбранных задач
+    } else {
+      const index = selectedTaskIds.indexOf(taskId);
+      if (index > -1) {
+        selectedTaskIds.splice(index, 1); // Удаляем ID из списка выбранных задач
+      }
+    }
+  } else if (event.target.classList.contains("trash__can")) {
+    // Удаление задачи
+    deleteTaskFromList(event.target);
+  }
 });
 
-function rerender(task) {
-  taskContainer.innerHTML = "";
-  tasks.forEach((task) => {
-    taskContainer.innerHTML += `
-                <div class="task__number">
-                    <div class="task__checkbox">
-                        <label>
-                            <input data-task-id="${task.id}" class="task__checkbox-input" type="checkbox" value="${task.status}">
-                        </label>
-                    </div>
-                    <div class="task">
-                        <div class="task__name">${task.name}</div>
-                        <div class="task__autor">${task.description}, <br>Дата создания: ${task.dateOfCreation}, <br>Дата изменения: ${task.dateOfChange}</div>
-                    </div>
-                    <div class="task__icons">
-                      <div class="task__icons-button"><i class="fa-sharp fa-solid fa-check check__mark"></i></div>
-                      <div class="task__icons-button"><i class="fa-sharp fa-solid fa-trash-can trash__can"></i></div>
-                    </div>
-                </div>
-            `;
-  });
-}
-
+// Форма добавления новой задачи
 const popup = document.querySelector(".popup");
 const buttonShow = document.querySelector(".button-show");
 const buttonClose = document.querySelector(".button-close");
+const newForm = document.querySelector(".popup__add-form");
 
-buttonShow.addEventListener("click", function () {
+buttonShow.addEventListener("click", () => {
   popup.classList.add("popup__open");
 });
 
-buttonClose.addEventListener("click", function () {
+buttonClose.addEventListener("click", () => {
   popup.classList.remove("popup__open");
 });
 
-document.addEventListener("keydown", function (event) {
+document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
     popup.classList.remove("popup__open");
   }
 });
 
-const newForm = document.querySelector(".popup__add-form");
-
-newForm.addEventListener("submit", function (event) {
+newForm.addEventListener("submit", (event) => {
   event.preventDefault();
   let date = new Date();
   const nameValue = document.querySelector("#popup__add-form-name").value;
   const descriptionValue = document.querySelector(
     "#popup__add-form-description"
   ).value;
+
+  // Генерация уникального ID (можно использовать более надежный метод)
+  const newId = Date.now();
+
   createTask({
+    id: newId, // Используем сгенерированный ID
     name: nameValue,
     description: descriptionValue,
     dateOfCreation: date.toLocaleDateString(),
     dateOfChange: date.toLocaleDateString(),
+    status: false,
   });
-  rerender();
+
+  renderTasks();
   document.querySelector("#popup__add-form-name").value = "";
   document.querySelector("#popup__add-form-description").value = "";
   popup.classList.remove("popup__open");
 });
 
-const checkboxes = document.querySelectorAll(".task__checkbox-input");
-
-checkboxes.forEach((checkbox) => {
-  const { taskId } = checkbox.dataset;
-  checkbox.addEventListener("change", (event) => {
-    const isChecked = event.target.checked;
-    updateTask({ id: Number(taskId), status: isChecked });
-  });
+// Инициализация списка задач при загрузке страницы
+document.addEventListener("DOMContentLoaded", () => {
+  renderTasks();
 });

@@ -1,5 +1,5 @@
 body {
-  background-color: blueviolet;
+  background-color: rgb(27, 151, 104);
   font-family: "Roboto";
 
   .list {
@@ -11,7 +11,8 @@ body {
     width: 700px;
     height: 400px;
     background-color: aliceblue;
-    border-radius: 3px;
+    border: 3px solid rgb(115, 255, 0);
+    border-radius: 10px;
 
     &__title {
       padding-left: 20px;
@@ -23,35 +24,20 @@ body {
       padding-top: 10px;
       padding-right: 20px;
 
-      &-cancel {
-        color: white;
-        background-color: rgb(188, 195, 235);
-        border: 0px;
-        padding: 10px;
-        border-radius: 3px;
-        transition: all 500ms ease;
-        margin-right: 5px;
-      }
-
-      &-cancel:hover {
-        background: blue;
-        color: white;
-        box-shadow: inset 0 0 0 3px blue;
-      }
-
       &-add {
         color: white;
-        background-color: blue;
+        background-color: rgb(115, 255, 0);
         border: 0px;
         padding: 10px;
         border-radius: 3px;
         transition: all 500ms ease;
+        cursor: pointer;
       }
 
       &-add:hover {
         background: white;
-        color: blue;
-        box-shadow: inset 0 0 0 3px blue;
+        color: rgb(115, 255, 0);
+        box-shadow: inset 0 0 0 3px rgb(115, 255, 0);
       }
     }
   }
@@ -78,7 +64,7 @@ body {
       align-items: center;
       height: 35px;
       padding-left: 5px;
-      border-left: 3px solid yellow;
+      border-left: 3px solid rgb(31, 228, 136);
       border-radius: 10%;
     }
 
@@ -114,13 +100,15 @@ body {
   }
 
   .check__mark {
-    color: green;
+    color: rgb(115, 255, 0);
     padding: 5px;
+    cursor: pointer;
   }
 
   .trash__can {
     color: red;
     padding: 5px;
+    cursor: pointer;
   }
 
   .popup {
@@ -132,8 +120,9 @@ body {
     transform: translate(-50%, -50%);
     width: 400px;
     height: 200px;
-    background-color: gainsboro;
-    border-radius: 3px;
+    background-color: aliceblue;
+    border: 3px solid rgb(115, 255, 0);
+    border-radius: 10px;
 
     &__content {
       position: relative;
@@ -143,7 +132,7 @@ body {
 
     &__add-form-button {
       color: white;
-      background-color: green;
+      background-color: rgb(115, 255, 0);
       border: 0px;
       padding: 10px;
       border-radius: 3px;
@@ -153,8 +142,8 @@ body {
 
     &__add-form-button:hover {
       background: white;
-      color: green;
-      box-shadow: inset 0 0 0 3px green;
+      color: rgb(115, 255, 0);
+      box-shadow: inset 0 0 0 3px rgb(115, 255, 0);
     }
 
     &__open {
@@ -186,7 +175,7 @@ body {
         left: 10px;
         width: 26px;
         height: 4px;
-        background: #e62f57;
+        background: #ff0037;
       }
 
       &-close::before {
